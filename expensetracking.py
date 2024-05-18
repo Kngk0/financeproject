@@ -11,6 +11,35 @@ class expensetracker:
  							 }
 
  	def interface(self):
+ 		while True:
+ 			print('==============================')
+ 			print('Expense Tracker Menu')
+ 			print('==============================')
+ 			print('1. Add Expense')
+ 			print('2. View Expenses')
+ 			print('3. Edit Expense')
+ 			print('4. Delete Expense')
+ 			print('5. Search Expense')
+ 			print('6. Generate Report')
+ 			print('7. Back')
+ 			print('\n')
+ 			choice = input('Enter your choice (1-7): ')
+
+ 			if choice == '1':
+ 				print('You selected Add expense')
+ 			elif choice == '2':
+ 				print('You selected View expenses')
+ 			elif choice == '3':
+ 				print('You selected Edit expense')
+ 			elif choice == '4':
+ 				print('You selected Delete expense')
+ 			elif choice == '5':
+ 				print('You selected Search expense')
+ 			elif choice == '6':
+ 				print('You selected Generate Report')
+ 			elif choice == '7':
+ 				print('You selected back')
+ 				break
 
 
 # 2. The application should allow users to add, remove, and update expenses.

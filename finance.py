@@ -13,7 +13,7 @@ def main_menu():
 		if choice == '1':
 			#print('You selected Track expenses')
 			track = expensetracking.expensetracker()
-			# expensetracker.interface()
+			track.interface()
 			# while expensetracker.interace is running, prompt user to add, remove, or update expense
 				# if user enters add, they will be prompted to add expense information and the expense data will be updated and then displayed on the interface
 				# if user enters remove, they will be prompted to remove expense information and the expense data will be updated and then displayed on the interface
