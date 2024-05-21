@@ -1,14 +1,17 @@
 # user-friendly menu interface
 import expensetracking
+import datetime
 # 1. The application should feature a command-line interface that is intuitive and easy to navigate.
 def main_menu():
 	while True:
+		print('==============================')
+		print('Main Menu')
+		print('==============================')
 		print('1. Track Expenses')
 		print('2. Manage Budget')
 		print('3. Calculator')
-		print('4. Exit')
-
-		choice = input('Enter your choice: ')
+		print('4. Exit\n')
+		choice = input('Enter your choice (1-4: ')
 		if choice.strip():
 			if choice == '1':
 				#print('You selected Track expenses')
@@ -23,19 +26,49 @@ def main_menu():
 	 				print('4. Delete Expense')
 	 				print('5. Search Expense')
 	 				print('6. Generate Report')
-	 				print('7. Back')
-	 				print('\n')
+	 				print('7. Back\n')
 	 				choice = input('Enter your choice (1-7): ')
 
 	 				if choice == '1':
 	 					print('Please enter details of a new expense.')
-	 					date = input('Enter the date of the expense (YYYY-MM-DD): ')
-	 					amount = input('Enter the amount spent: ')
+	 					while True:
+	 						date = input('Enter the date of the expense (YYYY-MM-DD): ')
+	 						try:
+	 							datetime.datetime.strptime(date, '%Y-%m-%d')
+	 							break
+	 						except ValueError:
+	 							print('Invalid date format. Please enter the date in the format YYYY-MM-DD.')
+	 					amount = input('Enter the amount spent: $')
+	 					try:
+	 						amount = float(amount)
+	 						if amount <= 0:
+	 							print('Amount must be a positive number.')
+	 						else:
+	 							break
+	 					except ValueError:
+	 						print('Invalid amount. Please enter a valid number.')
 	 					category = input('Enter the category for this expense: ')
 	 					description = input('Optionally, add a brief description for this expense:\n')
-	 					payment = input('Specify the payment method: ')
+	 					if description:
+	 						continue
+	 					else:
+	 						print('No description provided for this expense.')
+	 					method = ['cash', 'credit Card', 'debit Card', 'bank Transfer', 'check']
+	 					while True:
+	 						payment = input('Specify the payment method (Cash, Credit Card, Debit Card, Bank Transfer, Check: ').strip().lower()
+	 						if payment in method:
+	 							break
+	 						else:
+	 							print('Please enter a valid payment method from the options provided.')
 	 					to = input('Enter the recipient: ')
-	 					status = input('Paid or Pending: ')
+	 					payment_status = ['paid, pending']
+	 					while True:
+	 						status = input('Paid or Pending: ').strip().lower()
+	 						if status in payment_status:
+	 							break
+	 						else:
+	 							print('Please enter a valid payment status.')
+	 					#track.add(date, amount, category, description, payment, to, status)
 	 				elif choice == '2':
 	 					print('You selected View expenses')
 	 				elif choice == '3':
