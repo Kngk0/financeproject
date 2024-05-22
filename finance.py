@@ -38,15 +38,16 @@ def main_menu():
 	 							break
 	 						except ValueError:
 	 							print('Invalid date format. Please enter the date in the format YYYY-MM-DD.')
-	 					amount = input('Enter the amount spent: $')
-	 					try:
-	 						amount = float(amount)
-	 						if amount <= 0:
-	 							print('Amount must be a positive number.')
-	 						else:
-	 							break
-	 					except ValueError:
-	 						print('Invalid amount. Please enter a valid number.')
+	 					while True:
+	 						amount = input('Enter the amount spent: $')
+	 						try:
+	 							amount = float(amount)
+	 							if amount <= 0:
+	 								print('Amount must be a positive number.')
+	 							else:
+	 								break
+	 						except ValueError:
+	 							print('Invalid amount. Please enter a valid number.')
 	 					category = input('Enter the category for this expense: ')
 	 					description = input('Optionally, add a brief description for this expense:\n')
 	 					if description:
@@ -61,14 +62,17 @@ def main_menu():
 	 						else:
 	 							print('Please enter a valid payment method from the options provided.')
 	 					to = input('Enter the recipient: ')
-	 					payment_status = ['paid, pending']
+	 					payment_status = ['paid', 'pending']
 	 					while True:
 	 						status = input('Paid or Pending: ').strip().lower()
 	 						if status in payment_status:
 	 							break
 	 						else:
 	 							print('Please enter a valid payment status.')
-	 					#track.add(date, amount, category, description, payment, to, status)
+	 					newExpense = track.add(date, amount, category, payment, to, status, description)
+	 					print('Expense added successfully:')
+	 					print(newExpense)
+	 					print(type(newExpense))
 	 				elif choice == '2':
 	 					print('You selected View expenses')
 	 				elif choice == '3':
