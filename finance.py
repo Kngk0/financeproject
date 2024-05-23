@@ -2,6 +2,7 @@
 import expensetracking
 import datetime
 # 1. The application should feature a command-line interface that is intuitive and easy to navigate.
+# 2. Users should be able to interact with the application through text-based commands and receive informative prompts and messages
 def main_menu():
 	while True:
 		print('==============================')
@@ -14,7 +15,6 @@ def main_menu():
 		choice = input('Enter your choice (1-4: ')
 		if choice.strip():
 			if choice == '1':
-				#print('You selected Track expenses')
 				track = expensetracking.expensetracker()
 				while True:
 	 				print('==============================')
@@ -32,14 +32,14 @@ def main_menu():
 	 				if choice == '1':
 	 					print('Please enter details of a new expense.')
 	 					while True:
-	 						date = input('Enter the date of the expense (YYYY-MM-DD): ')
+	 						date = input('Enter the date of the expense (YYYY-MM-DD): ').strip()
 	 						try:
 	 							datetime.datetime.strptime(date, '%Y-%m-%d')
 	 							break
 	 						except ValueError:
 	 							print('Invalid date format. Please enter the date in the format YYYY-MM-DD.')
 	 					while True:
-	 						amount = input('Enter the amount spent: $')
+	 						amount = input('Enter the amount spent: $').strip()
 	 						try:
 	 							amount = float(amount)
 	 							if amount <= 0:
@@ -48,31 +48,40 @@ def main_menu():
 	 								break
 	 						except ValueError:
 	 							print('Invalid amount. Please enter a valid number.')
-	 					category = input('Enter the category for this expense: ')
-	 					description = input('Optionally, add a brief description for this expense:\n')
+	 					while True:
+	 						category = input('Enter the category for this expense: ').strip()
+	 						if not category:
+	 							print('Please enter the category for this expense.')
+	 						else:
+	 							break
+	 					description = input('Optionally, add a brief description for this expense:\n').strip()
 	 					if description:
 	 						continue
 	 					else:
 	 						print('No description provided for this expense.')
-	 					method = ['cash', 'credit Card', 'debit Card', 'bank Transfer', 'check']
+	 					method = ['cash', 'credit card', 'debit card', 'bank transfer', 'check']
 	 					while True:
 	 						payment = input('Specify the payment method (Cash, Credit Card, Debit Card, Bank Transfer, Check: ').strip().lower()
 	 						if payment in method:
 	 							break
 	 						else:
 	 							print('Please enter a valid payment method from the options provided.')
-	 					to = input('Enter the recipient: ')
+	 					while True:
+	 						to = input('Enter the recipient: ').strip()
+	 						if not to:
+	 							print('Please enter the recipient of this expense.')
+	 						else:
+	 							break
 	 					payment_status = ['paid', 'pending']
 	 					while True:
-	 						status = input('Paid or Pending: ').strip().lower()
+	 						status = input('Paid or Pending?: ').strip().lower()
 	 						if status in payment_status:
 	 							break
 	 						else:
 	 							print('Please enter a valid payment status.')
+	 					print('\nExpense added successfully:')
 	 					newExpense = track.add(date, amount, category, payment, to, status, description)
-	 					print('Expense added successfully:')
-	 					print(newExpense)
-	 					print(type(newExpense))
+	 					print('\n')
 	 				elif choice == '2':
 	 					print('You selected View expenses')
 	 				elif choice == '3':
@@ -98,5 +107,3 @@ def main_menu():
 
 
 main_menu()
-
-# 2. Users should be able to interact with the application through text-based commands and receive informative prompts and messages

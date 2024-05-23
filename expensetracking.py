@@ -1,5 +1,4 @@
 # Inputting, categorizing, saving, and controlling expenses.
-import random
 # 1. Users should be able to input their daily expenses, including the amount and category (e.g., groceries, utilities, entertainment).
 class expensetracker: 
 
@@ -32,8 +31,8 @@ class expensetracker:
  			'To': to,
  			'Payment Status': status
  		}
-
- 		return newExpense
+ 		for x, y in newExpense.items():
+ 			print(x, ':', y)
 
 
 # 3. Users should be able to view a summary of their expenses, categorized by expense type, and the total spending.
