@@ -56,7 +56,7 @@ def main_menu():
 	 							break
 	 					description = input('Optionally, add a brief description for this expense:\n').strip()
 	 					if description:
-	 						continue
+	 						pass
 	 					else:
 	 						print('No description provided for this expense.')
 	 					method = ['cash', 'credit card', 'debit card', 'bank transfer', 'check']
@@ -83,7 +83,8 @@ def main_menu():
 	 					newExpense = track.add(date, amount, category, payment, to, status, description)
 	 					print('\n')
 	 				elif choice == '2':
-	 					print('You selected View expenses')
+	 					#print('You selected View expenses')
+	 					viewExpense = track.view()
 	 				elif choice == '3':
 	 					print('You selected Edit expense')
 	 				elif choice == '4':
