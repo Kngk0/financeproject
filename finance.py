@@ -13,6 +13,7 @@ def main_menu():
 		print('3. Calculator')
 		print('4. Exit\n')
 		choice = input('Enter your choice (1-4: ')
+		print()
 		if choice.strip():
 			if choice == '1':
 				track = expensetracking.expensetracker()
@@ -22,13 +23,12 @@ def main_menu():
 	 				print('==============================')
 	 				print('1. Add Expense')
 	 				print('2. View Expenses')
-	 				print('3. Edit Expense')
-	 				print('4. Delete Expense')
-	 				print('5. Search Expense')
-	 				print('6. Generate Report')
-	 				print('7. Back\n')
+	 				print('3. Delete Expense')
+	 				print('4. Search Expense')
+	 				print('5. Generate Report')
+	 				print('6. Back\n')
 	 				choice = input('Enter your choice (1-7): ')
-
+	 				print()
 	 				if choice == '1':
 	 					print('Please enter details of a new expense.')
 	 					while True:
@@ -59,7 +59,7 @@ def main_menu():
 	 						pass
 	 					else:
 	 						print('No description provided for this expense.')
-	 					method = ['cash', 'credit card', 'debit card', 'bank transfer', 'check']
+	 					method = ['cash', 'credit card', 'debit card', 'bank transfer', 'check)']
 	 					while True:
 	 						payment = input('Specify the payment method (Cash, Credit Card, Debit Card, Bank Transfer, Check: ').strip().lower()
 	 						if payment in method:
@@ -83,17 +83,24 @@ def main_menu():
 	 					newExpense = track.add(date, amount, category, payment, to, status, description)
 	 					print('\n')
 	 				elif choice == '2':
-	 					#print('You selected View expenses')
 	 					viewExpense = track.view()
+	 					while True:
+	 						edit = input('Enter the number of the expense to edit, "d" to delete an expense, or "b" to go back: ')
+	 						if edit.isdigit() and 1 <= int(edit) <= len(track.entries):
+	 							pass
+	 						elif edit == 'd':
+	 							pass
+	 						elif edit == 'b':
+	 							break
+	 						else:
+	 							print('Invalid input, please try again.')
 	 				elif choice == '3':
-	 					print('You selected Edit expense')
-	 				elif choice == '4':
 	 					print('You selected Delete expense')
-	 				elif choice == '5':
+	 				elif choice == '4':
 	 					print('You selected Search expense')
-	 				elif choice == '6':
+	 				elif choice == '5':
 	 					print('You selected Generate Report')
-	 				elif choice == '7':
+	 				elif choice == '6':
 	 					print('You selected back')
 	 					break
 			elif choice == '2':
