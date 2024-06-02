@@ -86,7 +86,8 @@ def main_menu():
 	 					viewExpense = track.view()
 	 					while True:
 	 						edit = input('Enter the number of the expense to edit, "d" to delete an expense, or "b" to go back: ')
-	 						if edit.isdigit() and 1 <= int(edit) <= len(track.entries):
+	 						length = len(next(iter(track.expenses.values())))
+	 						if edit.isdigit() and 1 <= int(edit) <= length:
 	 							pass
 	 						elif edit == 'd':
 	 							pass

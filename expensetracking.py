@@ -13,7 +13,7 @@ class expensetracker:
  			'Payment Status': [],
  		}
 
-# 2. The application should allow users to add, remove, and update expenses.
+	# Method to add expenses
  	def add(self, date, amount, category, payment, to, status,  description = ' '):
  		self.expenses['Date'].append(date)
  		self.expenses['Amount'].append(amount)
@@ -33,11 +33,11 @@ class expensetracker:
  		}
  		for x, y in newExpense.items():
  			print(x, ':', y)
-
+ 	# Method to view expenses
  	def view(self):
  		entries = len(self.expenses['Date'])
  		for i in range(entries):
- 			print(i+1, '.')
+ 			print(f'{i+1}:')
  			print(f'Date: {self.expenses['Date'][i]}')
  			print(f'Amount: {self.expenses['Amount'][i]}')
  			print(f'Category: {self.expenses['Category'][i]}')
@@ -47,7 +47,7 @@ class expensetracker:
  			print(f'Payment Status: {self.expenses['Payment Status'][i]}')
  			print()
 
- 	def edit(self):
+ 	def edit(self, date, amount, category, payment, to, status, description):
  		pass
 
  	def delete(self):
