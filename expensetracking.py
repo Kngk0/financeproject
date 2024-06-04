@@ -32,23 +32,38 @@ class expensetracker:
  			'Payment Status': status
  		}
  		for x, y in newExpense.items():
- 			print(x, ':', y)
+ 			print(f'{x}: {y}')
+
  	# Method to view expenses
  	def view(self):
  		entries = len(self.expenses['Date'])
  		for i in range(entries):
  			print(f'{i+1}:')
- 			print(f'Date: {self.expenses['Date'][i]}')
- 			print(f'Amount: {self.expenses['Amount'][i]}')
- 			print(f'Category: {self.expenses['Category'][i]}')
- 			print(f'Description: {self.expenses['Description'][i]}')
- 			print(f'Payment Method: {self.expenses['Payment Method'][i]}')
- 			print(f'To: {self.expenses['To'][i]}')
- 			print(f'Payment Status: {self.expenses['Payment Status'][i]}')
+ 			print(f'Date: {self.expenses["Date"][i]}')
+ 			print(f'Amount: ${self.expenses["Amount"][i]}')
+ 			print(f'Category: {self.expenses["Category"][i]}')
+ 			print(f'Description: {self.expenses["Description"][i]}')
+ 			print(f'Payment Method: {self.expenses["Payment Method"][i]}')
+ 			print(f'To: {self.expenses["To"][i]}')
+ 			print(f'Payment Status: {self.expenses["Payment Status"][i]}')
  			print()
 
- 	def edit(self, date, amount, category, payment, to, status, description):
- 		pass
+
+ 	def edit(self, index, date = None, amount = None, category = None, payment = None, to = None, status = None, description = None):
+ 		if date:
+ 			self.expenses['Date'][index] = date
+ 		if amount:
+ 			self.expenses['Amount'][index] = amount
+ 		if category:
+ 			self.expenses['Category'][index] = category
+ 		if description:
+ 			self.expenses['Description'][index] = description
+ 		if payment:
+ 			self.expenses['Payment Method'][index] = payment
+ 		if to:
+ 			self.expenses['To'][index] = to
+ 		if status:
+ 			self.expenses['Payment Status'][index] = status
 
  	def delete(self):
  		pass

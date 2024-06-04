@@ -23,10 +23,9 @@ def main_menu():
 	 				print('==============================')
 	 				print('1. Add Expense')
 	 				print('2. View Expenses')
-	 				print('3. Delete Expense')
-	 				print('4. Search Expense')
-	 				print('5. Generate Report')
-	 				print('6. Back\n')
+	 				print('3. Search Expense')
+	 				print('4. Generate Report')
+	 				print('5. Back\n')
 	 				choice = input('Enter your choice (1-7): ')
 	 				print()
 	 				if choice == '1':
@@ -61,7 +60,7 @@ def main_menu():
 	 						print('No description provided for this expense.')
 	 					method = ['cash', 'credit card', 'debit card', 'bank transfer', 'check)']
 	 					while True:
-	 						payment = input('Specify the payment method (Cash, Credit Card, Debit Card, Bank Transfer, Check: ').strip().lower()
+	 						payment = input('Specify the payment method (Cash, Credit Card, Debit Card, Bank Transfer, Check): ').strip().lower()
 	 						if payment in method:
 	 							break
 	 						else:
@@ -80,15 +79,72 @@ def main_menu():
 	 						else:
 	 							print('Please enter a valid payment status.')
 	 					print('\nExpense added successfully:')
-	 					newExpense = track.add(date, amount, category, payment, to, status, description)
+	 					track.add(date, amount, category, payment, to, status, description)
 	 					print('\n')
 	 				elif choice == '2':
-	 					viewExpense = track.view()
 	 					while True:
+	 						track.view()
 	 						edit = input('Enter the number of the expense to edit, "d" to delete an expense, or "b" to go back: ')
-	 						length = len(next(iter(track.expenses.values())))
-	 						if edit.isdigit() and 1 <= int(edit) <= length:
-	 							pass
+	 						if edit.isdigit():
+	 							index = int(edit) - 1
+	 							length = len(next(iter(track.expenses.values())))
+	 							if 0 <= index <= length:
+	 								while True:
+	 									newDate = input('Enter new date (YYYY-MM-DD) or press Enter to keep current: ').strip()
+	 									if newDate:
+	 										try:
+	 											datetime.datetime.strptime(newDate, '%Y-%m-%d')
+	 											break
+	 										except ValueError:
+	 											print('Invalid date format. Please enter the date in the format YYYY-MM-DD')
+	 									else:
+	 										break
+	 								while True:
+	 									newAmount = input('Enter new amount or press Enter to keep current: ').strip()
+	 									if newAmount:
+	 										try:
+	 											newAmount = float(newAmount)
+	 											if newAmount <= 0:
+	 												print('Amount must be a positive number.')
+	 											else:
+	 												break
+	 										except ValueError:
+	 											print('Invalid amount. Please enter a valid number.')
+	 									else:
+	 										break
+	 								newCategory = input('Enter new category or press Enter to keep current: ').strip()
+	 								newDescription = input('Enter new description or press Enter to keep current: ').strip()
+	 								while True:
+	 									newPayment = input('Enter new payment method (Cash, Credit Card, Debit Card, Bank Transfer, Check) or press Enter to keep current: ').strip().lower()
+	 									if newPayment:
+	 										if newPayment in method:
+	 											break
+	 										else:
+	 											print('Please enter a valid payment method from the options provided.')
+	 									else:
+	 										break
+	 								newTo = input('Enter new recipient or press Enter to keep current: ').strip()
+	 								while True:
+	 									newStatus = input('Enter new payment status or press Enter to keep current: ').strip().lower()
+	 									if newStatus:
+	 										if newStatus in payment_status:
+	 											pass
+	 										else:
+	 											print('Please enter a valid payment status.')
+	 									else:
+	 										break
+	 								while True:
+	 									save = input('Save changes? (yes/no): ').strip().lower()
+	 									if save == 'yes':
+	 										track.edit(index, newDate, newAmount, newCategory, newPayment, newTo, newStatus, newDescription)
+	 										print('\nExpense updated successfully!\n')
+	 										break
+	 									elif save == 'no':
+	 										break
+	 									else:
+	 										print('Please enter yes or no.')
+	 							else:
+	 								print('Invalid number. Please try again.')
 	 						elif edit == 'd':
 	 							pass
 	 						elif edit == 'b':
@@ -96,12 +152,10 @@ def main_menu():
 	 						else:
 	 							print('Invalid input, please try again.')
 	 				elif choice == '3':
-	 					print('You selected Delete expense')
-	 				elif choice == '4':
 	 					print('You selected Search expense')
-	 				elif choice == '5':
+	 				elif choice == '4':
 	 					print('You selected Generate Report')
-	 				elif choice == '6':
+	 				elif choice == '5':
 	 					print('You selected back')
 	 					break
 			elif choice == '2':
