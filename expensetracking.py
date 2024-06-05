@@ -32,7 +32,10 @@ class expensetracker:
  			'Payment Status': status
  		}
  		for x, y in newExpense.items():
- 			print(f'{x}: {y}')
+ 			if x == 'Amount':
+ 				print(f'{x}: ${y:,.2f}')
+ 			else:
+ 				print(f'{x}: {y}')
 
  	# Method to view expenses
  	def view(self):
@@ -40,7 +43,7 @@ class expensetracker:
  		for i in range(entries):
  			print(f'{i+1}:')
  			print(f'Date: {self.expenses["Date"][i]}')
- 			print(f'Amount: ${self.expenses["Amount"][i]}')
+ 			print(f'Amount: ${self.expenses["Amount"][i]:,.2f}')
  			print(f'Category: {self.expenses["Category"][i]}')
  			print(f'Description: {self.expenses["Description"][i]}')
  			print(f'Payment Method: {self.expenses["Payment Method"][i]}')
