@@ -12,7 +12,7 @@ def main_menu():
 		print('2. Manage Budget')
 		print('3. Calculator')
 		print('4. Exit\n')
-		choice = input('Enter your choice (1-4: ')
+		choice = input('Enter your choice (1-4): ')
 		print()
 		if choice.strip():
 			if choice == '1':
@@ -26,15 +26,18 @@ def main_menu():
 	 				print('3. Search Expense')
 	 				print('4. Generate Report')
 	 				print('5. Back\n')
-	 				choice = input('Enter your choice (1-7): ')
+	 				choice = input('Enter your choice (1-5): ')
 	 				print()
 	 				if choice == '1':
 	 					print('Please enter details of a new expense.')
 	 					while True:
 	 						date = input('Enter the date of the expense (YYYY-MM-DD): ').strip()
 	 						try:
-	 							datetime.datetime.strptime(date, '%Y-%m-%d')
-	 							break
+	 							date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
+	 							if date <= datetime.datetime.today().date():
+	 								break
+	 							else:
+	 								print('The date cannot be in the future. Please enter a valid date.')
 	 						except ValueError:
 	 							print('Invalid date format. Please enter the date in the format YYYY-MM-DD.')
 	 					while True:
@@ -102,8 +105,11 @@ def main_menu():
 		 										newDate = input('Enter new date (YYYY-MM-DD) or press Enter to keep current: ').strip()
 		 										if newDate:
 		 											try:
-		 												datetime.datetime.strptime(newDate, '%Y-%m-%d')
-		 												break
+		 												newDate = datetime.datetime.strptime(newDate, '%Y-%m-%d').date()
+		 												if newDate <= datetime.datetime.today().date():
+		 													break
+		 												else:
+		 													print('The date cannot be in the future. Please enter a valid date.')
 		 											except ValueError:
 		 												print('Invalid date format. Please enter the date in the format YYYY-MM-DD')
 		 										else:

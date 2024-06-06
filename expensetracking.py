@@ -68,7 +68,7 @@ class expensetracker:
  		if status:
  			self.expenses['Payment Status'][index] = status
 
- 	def delete(self):
+ 	def delete(self, index):
  		pass
 
 
