@@ -69,7 +69,13 @@ class expensetracker:
  			self.expenses['Payment Status'][index] = status
 
  	def delete(self, index):
- 		pass
+ 		self.expenses['Date'].pop(index)
+ 		self.expenses['Amount'].pop(index)
+ 		self.expenses['Category'].pop(index)
+ 		self.expenses['Description'].pop(index)
+ 		self.expenses['Payment Method'].pop(index)
+ 		self.expenses['To'].pop(index)
+ 		self.expenses['Payment Status'].pop(index)
 
 
 
