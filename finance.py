@@ -194,8 +194,11 @@ def main_menu():
 			 					else:
 			 						print('Invalid input, please try again.')
 	 				elif choice == '3':
-	 					print('You selected Search expense')
-	 					
+	 					while True:
+	 						search = input('Search (or type "exit" to quit): ')
+	 						if search.lower() == 'exit':
+	 							break
+	 						track.search(search)
 	 				elif choice == '4':
 	 					print('You selected Generate Report')
 	 				elif choice == '5':

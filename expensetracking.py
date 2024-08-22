@@ -95,6 +95,23 @@ class expensetracker:
  	def delete(self, index):
  		self.expenses.pop(index)
 
-
-
+ 	def search(self, searchTerm):
+ 		found = False
+ 		for expense in self.expenses:
+ 			for value in expense.values():
+ 				if searchTerm in str(value):
+ 					print(f'Date: {expense["Date"]}')
+ 					print(f'Amount: {expense["Amount"]:,.2f}')
+ 					print(f'Category: {expense["Category"]}')
+ 					print(f'Description: {expense["Description"]}')
+ 					print(f'Payment Method: {expense["Payment Method"]}')
+ 					print(f'Merchant: {expense["To"]}')
+ 					print(f'Payment Status: {expense["Payment Status"]}')
+ 					print()
+ 					found = True
+ 					break
+ 		if not found:
+ 			print('No results for "' + searchTerm + '"')
+ 			print('Check the spelling or try a new search.')
+ 			print()
 # 3. Users should be able to view a summary of their expenses, categorized by expense type, and the total spending.
