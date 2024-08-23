@@ -1,5 +1,6 @@
 # user-friendly menu interface
 import expensetracking
+import budgetmanagement
 import datetime
 # 1. The application should feature a command-line interface that is intuitive and easy to navigate.
 # 2. Users should be able to interact with the application through text-based commands and receive informative prompts and messages
@@ -24,9 +25,8 @@ def main_menu():
 	 				print('1. Add Expense')
 	 				print('2. View Expenses')
 	 				print('3. Search Expense')
-	 				print('4. Generate Report')
-	 				print('5. Back\n')
-	 				choice = input('Enter your choice (1-5): ')
+	 				print('4. Back\n')
+	 				choice = input('Enter your choice (1-4): ')
 	 				print()
 	 				if choice == '1':
 	 					print('Please enter details of a new expense.')
@@ -200,12 +200,81 @@ def main_menu():
 	 							break
 	 						track.search(search)
 	 				elif choice == '4':
-	 					print('You selected Generate Report')
-	 				elif choice == '5':
 	 					print('You selected back')
 	 					break
+	 				else:
+	 					print('Please enter a valid choice (1-4)\n')
 			elif choice == '2':
 				print('You selected Manage Budget')
+				budget = budgetmanagement.management()
+				while True:
+					print('==============================')
+					print('Budget Management Menu')
+					print('==============================')
+					print('1. Add Income')
+					print('2. Set or Update Budget')
+					print('3. View Budget')
+					print('4. Back\n')
+					choice = input('Enter your choice (1-4): ')
+					print()
+					if choice == '1':
+						print('Please enter details of a new income.')
+						while True:
+							date = input('Enter the date of the income (YYYY-MM-DD): ').strip()
+							try:
+								date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
+								break
+							except ValueError:
+								print('Invalid date format. Please enter the date in the format YYYY-MM-DD.')
+						if date > datetime.datetime.today().date():
+							status = 'pending'
+						else:
+							status = 'paid'
+						while True:
+							amount = input('Enter the amount of income: $').strip()
+							try:
+								amount = float(amount.replace(',',''))
+								if amount <= 0:
+									print('Amount must be a positive number.')
+								else:
+									break
+							except ValueError:
+								print('Invalid amount. Please enter a valid number.')
+						while True:
+							category = input('Enter the category for this income: ').strip()
+							if not category:
+								print('Please enter the category for this income.')
+							else:
+								break
+						description = input('Optionally, add a brief description for this income:\n').strip()
+						if description:
+							pass
+						else:
+							print('No description provided for this income.')
+						incomeType = ['cash', 'credit', 'bank transfer', 'check']
+						while True:
+							type = input('Specify the income method (Cash, Credit, Bank Transfer, Check): ').strip().lower()
+							if type in incomeType:
+								break
+							else:
+								print('Please enter a valid income method from the options provided.')
+						while True:
+							source = input('Enter the source: ').strip()
+							if not source:
+								print('Please enter the source of this income.')
+							else:
+								break
+						print('Income added successfully:')
+						budget.add(date, amount, category, type, source, status, description)
+						print('\n')
+					elif choice == '2':
+						print('You selected Set or Update Budget')
+					elif choice == '3':
+						print('You selected View Bidget')
+					elif choice == '4':
+						break
+					else:
+						print('Please enter a valid choice (1-4)\n')
 			elif choice == '3':
 				print('You selected Calculator')
 			elif choice == '4':
