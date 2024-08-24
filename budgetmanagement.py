@@ -26,9 +26,15 @@ class management:
 			else:
 				print(f'{x}: {y}')
 
-	# Function to set or update budget
+	# Function to set budget
 	# FUNCTION setBudget(category STRING, budgetAmount FLOAT, description STRING)
+	def setBudget(self, category, budgetAmount, description = ' '):
 		# DEFINE budget AS DICTIONARY OF CATEGORY, BUDGETAMOUNT, DESCRIPTION
+		budget = {
+			"Category": category,
+			"Budget Amount": budgetAmount,
+			"Description": description
+		}
 		# FOR EACH budget IN self.budgetList
 			# IF budget['category'] EQUALS category THEN
 				# SET budget['budgetAmount'] TO budgetAmount

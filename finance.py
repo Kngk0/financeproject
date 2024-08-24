@@ -5,6 +5,8 @@ import datetime
 # 1. The application should feature a command-line interface that is intuitive and easy to navigate.
 # 2. Users should be able to interact with the application through text-based commands and receive informative prompts and messages
 def main_menu():
+	track = expensetracking.expensetracker()
+	budget = budgetmanagement.management()
 	while True:
 		print('==============================')
 		print('Main Menu')
@@ -17,7 +19,6 @@ def main_menu():
 		print()
 		if choice.strip():
 			if choice == '1':
-				track = expensetracking.expensetracker()
 				while True:
 	 				print('==============================')
 	 				print('Expense Tracker Menu')
@@ -206,7 +207,6 @@ def main_menu():
 	 					print('Please enter a valid choice (1-4)\n')
 			elif choice == '2':
 				print('You selected Manage Budget')
-				budget = budgetmanagement.management()
 				while True:
 					print('==============================')
 					print('Budget Management Menu')
@@ -264,9 +264,8 @@ def main_menu():
 								print('Please enter the source of this income.')
 							else:
 								break
-						print('Income added successfully:')
+						print('\nIncome added successfully:')
 						budget.add(date, amount, category, type, source, status, description)
-						print('\n')
 					elif choice == '2':
 						print('You selected Set or Update Budget')
 					elif choice == '3':
