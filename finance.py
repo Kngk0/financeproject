@@ -33,6 +33,9 @@ def main_menu():
 	 					print('Please enter details of a new expense.')
 	 					while True:
 	 						date = input('Enter the date of the expense (YYYY-MM-DD): ').strip()
+	 						if not date:
+	 							print('Please enter the date for this expense.')
+	 							continue
 	 						try:
 	 							date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
 	 							if date <= datetime.datetime.today().date():
@@ -43,6 +46,9 @@ def main_menu():
 	 							print('Invalid date format. Please enter the date in the format YYYY-MM-DD.')
 	 					while True:
 	 						amount = input('Enter the amount spent: $').strip()
+	 						if not amount:
+	 							print('Please enter the amount for this expense.')
+	 							continue
 	 						try:
 	 							amount = float(amount.replace(',',''))
 	 							if amount <= 0:
@@ -221,6 +227,9 @@ def main_menu():
 						print('Please enter details of a new income.')
 						while True:
 							date = input('Enter the date of the income (YYYY-MM-DD): ').strip()
+							if not date:
+								print('Please enter the date for this income.')
+								continue
 							try:
 								date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
 								break
@@ -232,6 +241,9 @@ def main_menu():
 							status = 'paid'
 						while True:
 							amount = input('Enter the amount of income: $').strip()
+							if not amount:
+								print('Please enter the amount for this expense.')
+								continue
 							try:
 								amount = float(amount.replace(',',''))
 								if amount <= 0:
@@ -268,8 +280,34 @@ def main_menu():
 						budget.add(date, amount, category, type, source, status, description)
 					elif choice == '2':
 						print('You selected Set or Update Budget')
+						print('Please enter details for budget')
+						while True:
+							category = input('Enter the budget category: ')
+							if not category:
+								print('Please enter the category for this budget.')
+							else:
+								break
+						while True:
+							budgetAmount = input("Enter the budget amount: $")
+							if not budgetAmount:
+								print('Please enter the amount for this budget')
+								continue
+							try:
+								budgetAmount = float(budgetAmount.replace(',',''))
+								if budgetAmount <= 0:
+									print('Amount must be a positive number.')
+								else:
+									break
+							except ValueError:
+								print('Invalid amount. Please enter a valid number.')
+						description = input("Enter a description for the budget (optional): ")
+						if not description:
+							print('No description provided for this budget.')
+						print('\nBudget set successfully:')
+						budget.setBudget(category, budgetAmount, description)
+						print()
 					elif choice == '3':
-						print('You selected View Bidget')
+						print('You selected View Budget')
 					elif choice == '4':
 						break
 					else:

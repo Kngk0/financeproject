@@ -33,19 +33,29 @@ class management:
 		budget = {
 			"Category": category,
 			"Budget Amount": budgetAmount,
+			"Remaining Budget": budgetAmount,
 			"Description": description
 		}
 		# FOR EACH budget IN self.budgetList
+		for budget in self.budgetList:
 			# IF budget['category'] EQUALS category THEN
+			if budget['Category'] == category:
 				# SET budget['budgetAmount'] TO budgetAmount
+				budget['Budget Amount'] = budgetAmount
 				# SET budget['remainingBudget'] TO budgetAmount
+				budget['Remaining Budget'] = budgetAmount
 				# PRINT "Updated budget for " + category + ": " + budgetAmount
-				# RETURN
-			# END IF
-		# END FOR
+				print(f"Updated budget for {category}: ${budgetAmount:,.2f}")
+				break
+			# If category does not exist, add a new budget
+			else:
+				# ADD newBudget to self.budgetList
+				self.budgetList.append(budget)
+				# PRINT 'Set new budget for ' + category + ": " + monthlyBudget
+				print(f"Set new budget for {category}: ${budgetAmount:,.2f}")
 
-		# If category does not exist, add a new budget
-		# CREATE newBudget AS BudgetCategory(category, monthlyBudget, description)
-		# ADD newBudget to self.budgetList
-		# PRINT 'Set new budget for ' + category + ": " + monthlyBudget
-	# END FUNCTION
+		for x, y in budget.items():
+			if y == budgetAmount:
+				print(f'{x}: ${y:,.2f}')
+			else:
+				print(f'{x}: {y}')
