@@ -36,6 +36,10 @@ class management:
 			"Remaining Budget": budgetAmount,
 			"Description": description
 		}
+
+		categoryExist = False
+
+
 		# FOR EACH budget IN self.budgetList
 		for budget in self.budgetList:
 			# IF budget['category'] EQUALS category THEN
@@ -46,13 +50,14 @@ class management:
 				budget['Remaining Budget'] = budgetAmount
 				# PRINT "Updated budget for " + category + ": " + budgetAmount
 				print(f"Updated budget for {category}: ${budgetAmount:,.2f}")
+				categoryExist = True
 				break
-			# If category does not exist, add a new budget
-			else:
-				# ADD newBudget to self.budgetList
-				self.budgetList.append(budget)
-				# PRINT 'Set new budget for ' + category + ": " + monthlyBudget
-				print(f"Set new budget for {category}: ${budgetAmount:,.2f}")
+		# If category does not exist, add a new budget
+		if not categoryExist:
+			# ADD newBudget to self.budgetList
+			self.budgetList.append(budget)
+			# PRINT 'Set new budget for ' + category + ": " + monthlyBudget
+			print(f"Set new budget for {category}: ${budgetAmount:,.2f}")
 
 		for x, y in budget.items():
 			if y == budgetAmount:

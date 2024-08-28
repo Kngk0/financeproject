@@ -308,6 +308,7 @@ def main_menu():
 						print()
 					elif choice == '3':
 						print('You selected View Budget')
+						
 					elif choice == '4':
 						break
 					else:
