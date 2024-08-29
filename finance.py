@@ -160,6 +160,7 @@ def main_menu():
 			 								if save == 'yes':
 			 									track.edit(index, newDate, newAmount, newCategory, newPayment, newTo, newStatus, newDescription)
 			 									print('\nExpense updated successfully!\n')
+			 									track.view()
 			 									break
 			 								elif save == 'no':
 			 									break
@@ -179,6 +180,7 @@ def main_menu():
 			 									if confirm == 'yes':
 			 										track.delete(index)
 			 										print('\nExpense deleted successfully!\n')
+			 										track.view()
 			 										empty = True
 			 										for items in track.expenses:
 			 											if items:
@@ -308,7 +310,7 @@ def main_menu():
 						print()
 					elif choice == '3':
 						print('You selected View Budget')
-						
+
 					elif choice == '4':
 						break
 					else:

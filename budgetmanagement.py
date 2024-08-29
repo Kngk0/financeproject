@@ -64,3 +64,31 @@ class management:
 				print(f'{x}: ${y:,.2f}')
 			else:
 				print(f'{x}: {y}')
+
+	# Function to view summary
+	# FUNCTION viewSummary() RETURNS DICTIONARY
+	def viewSummary(self):
+		# DEFINE summary AS DICTIONARY WITH KEYS "Total Income", "Total Budgets", "Category Details"
+		summary = {
+			"Total Income": 0,
+			"Total Budget": 0,
+			"Category Details": {}
+		}
+		totalIncome = 0
+		# Calculate total income
+		# SET totalIncome TO SUM OF income.amount FOR EACH income IN self.incomeList
+		for income in self.incomeList:
+			print(f'Date: {income['Date']}')
+ 			print(f'Amount: {income['Amount']:,.2f}')
+ 			print(f'Category: {income['Category']}')
+ 			print(f'Description: {income['Description']}')
+ 			print(f'Income Type: {expense['Income Type']}')
+ 			print(f'Source: {expense['Source']}')
+ 			print(f'Status: {expense['Status']}')
+ 			print()
+			totalIncome += income["Amount"]
+
+		# SET summary["Total Income"] TO total_income
+		summary['Total Income'] = f"${totalIncome:,.2f}"
+
+		print(summary)

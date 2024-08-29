@@ -54,6 +54,10 @@ class expensetracker:
 
  	# Method to view expenses
  	def view(self):
+ 		summary = {
+ 			"Total Expenses": 0
+ 		}
+ 		totalExpenses = 0
  		for expense in self.expenses:
  			print(f'Date: {expense['Date']}')
  			print(f'Amount: {expense['Amount']:,.2f}')
@@ -63,6 +67,11 @@ class expensetracker:
  			print(f'Merchent: {expense['To']}')
  			print(f'Payment Status: {expense['Payment Status']}')
  			print()
+ 			totalExpenses += expense["Amount"]
+
+ 		summary["Total Expenses"] = f"${totalExpenses:,.2f}"
+
+ 		print(summary)
  		#entries = len(self.expenses['Date'])
  		#for i in range(entries):
  		#	print(f'{i+1}:')
