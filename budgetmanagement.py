@@ -49,6 +49,8 @@ class management:
 			"Category Details": {}
 		}
 
+		warnings = []
+
 		# Initalize total budget to zero
 		totalBudget = 0
 
@@ -72,6 +74,11 @@ class management:
 			}
 			totalBudget += budget["Budget Amount"]
 
+			if spent > budget["Budget Amount"]:
+				warnings.append(f"Warning: Exceeded budget for " + budget["Category"])
+			elif (budget["Budget Amount"] - spent) <= (0.1 * budget["Budget Amount"]):
+				warnings.append("Warning: Approaching budget limit for " + budget["Category"])
+
 		summary["Total Budget"] = f"${totalBudget:,.2f}"
 
 		print("\nFinancial Summary:")
@@ -86,3 +93,6 @@ class management:
 			if details["Description"]:
 				print(f"	Description: {details['Description']}")
 			print()
+
+		for warning in warnings:
+			print(warning)
