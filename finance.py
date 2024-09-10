@@ -2,11 +2,13 @@
 import transactionTracking
 import budgetmanagement
 import datetime
+import calculator
 # 1. The application should feature a command-line interface that is intuitive and easy to navigate.
 # 2. Users should be able to interact with the application through text-based commands and receive informative prompts and messages
 def mainMenu():
 	track = transactionTracking.transactionTracker()
 	manage = budgetmanagement.management()
+	calculate = calculator.calculator()
 	while True:
 		print('==============================')
 		print('Main Menu')
@@ -162,7 +164,6 @@ def mainMenu():
 	 				else:
 	 					print('Please enter a valid choice (1-4)\n')
 			elif choice == '2':
-				print('You selected Manage Budget')
 				while True:
 					print('==============================')
 					print('Budget Management Menu')
@@ -208,6 +209,62 @@ def mainMenu():
 						print('Please enter a valid choice (1-4)\n')
 			elif choice == '3':
 				print('You selected Calculator')
+				while True:
+					print('==============================')
+					print('Calculator')
+					print('==============================')
+					print('1. Addition')
+					print('2. Subtraction')
+					print('3. Multiplication')
+					print('4. Division')
+					print('5. Power')
+					print('6. Square Root')
+					print('7. Back\n')
+					choice = input('Enter your choice (1-7): ')
+					print()
+
+					if choice in ['1','2', '3', '4', '5']:
+						while True:
+							try:
+								# Input two numbers
+								num1 = float(input("Enter first number: "))
+								num2 = float(input("Enter second number: "))
+
+								if choice == '1':
+									print(f'Result: {num1} + {num2} = {calculate.add(num1, num2)}\n')
+									break
+								elif choice =='2':
+									print(f'Result: {num1} - {num2} = {calculate.subtract(num1, num2)}\n')
+									break
+								elif choice == '3':
+									print(f'Result: {num1} * {num2} = {calculate.multiply(num1, num2)}\n')
+									break
+								elif choice == '4':
+									print(f'Result: {num1} / {num2} = {calculate.divide(num1, num2)}\n')
+									break
+								elif choice == '5':
+									print(f'Result: {num1} to the power of {num2} = {calculate.power(num1,num2)}\n')
+									break
+
+							except ValueError:
+								print('Invalid input, please enter numbers.')
+
+					elif choice == '6':
+						while True:
+							try:
+								num1 = float(input("Enter a number: "))
+								print(f'Result: the square root of {num1} = {calculate.square(num1)}\n')
+								break
+
+							except ValueError:
+								print('Invalid input, please enter a number.')
+
+					elif choice == '7':
+						break
+					else:
+						print('Please enter a valid choice (1-7)\n')
+
+
 			elif choice == '4':
 				print('Exiting program. Goodbye!')
 				break

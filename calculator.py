@@ -1,5 +1,24 @@
 # Implements basic arithmetic operations and provides users with a simple calculator interface for performing calculations.
+class calculator:
 
-# 1. The application should provide basic arithmetic operations (addition, subtraction, multiplication, division) for users to perform calculations.
+	import math
 
-# 2. Users should be able to input numbers and perform calculations within the same application
+	def add(self, x, y):
+		return x + y
+
+	def subtract(self, x, y):
+		return x - y
+
+	def multiply(self, x, y):
+		return x * y
+
+	def divide(self, x, y):
+		if y == 0:
+			return "Error! division by zero"
+		return x / y
+
+	def power(self, x , y):
+		return pow(x,y)
+
+	def square(self, x):
+		return self.math.sqrt(x)
