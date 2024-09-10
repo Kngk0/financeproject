@@ -88,7 +88,7 @@ def mainMenu():
 	 							break
 	 					print('\nExpense added successfully:')
 	 					track.addExpense(date, amount, category, payment, to, payment_status, description)
-	 					print('\n')
+	 					print()
 	 				elif choice == '2':
 	 					print('Please enter details of a new income.')
 	 					while True:
@@ -144,6 +144,7 @@ def mainMenu():
 	 							break
 	 					print('\nIncome added successfully:')
 	 					track.addIncome(date, amount, category, type, source, status, description)
+	 					print()
 	 				elif choice == '3':
 	 					track.view()
 	 					# Check if both expenses and incomes are empty
@@ -155,8 +156,8 @@ def mainMenu():
 	 						if search.lower() == 'exit':
 	 							break
 	 						track.search(search)
+	 						print()
 	 				elif choice == '5':
-	 					print('You selected back')
 	 					break
 	 				else:
 	 					print('Please enter a valid choice (1-4)\n')
@@ -172,12 +173,11 @@ def mainMenu():
 					choice = input('Enter your choice (1-3): ')
 					print()
 					if choice == '1':
-						print('You selected Set or Update Budget')
 						print('Please enter details for Budget')
 						while True:
-							category = input('Enter the Budget category: ')
+							category = input('Enter the Budget category: ').strip()
 							if not category:
-								print('Please enter the category for this Budget.').strip()
+								print('Please enter the category for this Budget.')
 							else:
 								break
 						while True:
@@ -200,7 +200,6 @@ def mainMenu():
 						manage.setBudget(category, budgetAmount, description)
 						print()
 					elif choice == '2':
-						print('You selected View Budget')
 						manage.viewSummary(track)
 						print()
 					elif choice == '3':

@@ -49,39 +49,40 @@ class management:
 			"Category Details": {}
 		}
 
-		print("Expenses Loaded:")
-		print(tracker.expenses)
-
 		# Initalize total budget to zero
 		totalBudget = 0
 
 		# Print budget entries and calculate total budget
 		for budget in self.budgetList:
-			print(f'Category: {budget['Category']}')
-			print(f'Budget Amount: {budget['Budget Amount']:,.2f}')
-			print(f'Description: {budget['Description']}')
-			print()
-			totalBudget += budget["Budget Amount"]
-		
 			# Initalize spent to zero
 			spent = 0
-			
+
 			# Calculate remaining budget for each category
 			for expense in tracker.expenses:
 				if expense['Category'] == budget['Category']:
 					spent += expense['Amount']
-					print(f"Added {expense['Amount']} to spent for {budget['Category']}")
 
 			remaining = budget['Budget Amount'] - spent
 
 			summary["Category Details"][budget['Category']] = {
 				"Budget": budget['Budget Amount'],
 				"Spent": spent,
-				"Remaining": remaining
+				"Remaining": remaining,
+				"Description": budget["Description"]
 			}
+			totalBudget += budget["Budget Amount"]
 
 		summary["Total Budget"] = f"${totalBudget:,.2f}"
 
-
 		print("\nFinancial Summary:")
-		print(summary)
+		print(f"Total Budget: {summary["Total Budget"]}")
+		print(f"Category Details:")
+
+		for category, details in summary["Category Details"].items():
+			print(f"  Category: {category}")
+			print(f"	Budget: ${details['Budget']:,.2f}")
+			print(f"	Spent: ${details['Spent']:,.2f}")
+			print(f"	Remaining: ${details['Remaining']:,.2f}")
+			if details["Description"]:
+				print(f"	Description: {details['Description']}")
+			print()
