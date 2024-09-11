@@ -33,3 +33,12 @@ This financial tool is an all-in-one personal finance management tool. It helps 
    ```bash
    git clone https://github.com/Kngk0/financeproject.git
    cd financeproject
+2. **Install dependencies**:
+   This project does not have external dependencies.
+3. **Run the program**:
+   ```bash
+   python main.py
+
+## Usage
+
+
