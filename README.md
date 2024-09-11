@@ -14,3 +14,19 @@ This financial tool is an all-in-one personal finance management tool. It helps 
   
 # Table of Contents
 
+<details>
+   <Summary>Table of Contents</Summary>
+
+   - [Installation](#installation)
+   - [Usage](#usage)
+      - [Transaction Tracker](#transaction-tracker)
+      - [Budget Manager](#budget-manager)
+      - [Calculator](#calculator)
+   - [Project Structure](#project-structure)
+   - [Contributing](#contributing)
+   - [License](#licesnse)
+</details>
+
+## Installation
+
+1. Clone the repository:
