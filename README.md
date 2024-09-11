@@ -29,4 +29,7 @@ This financial tool is an all-in-one personal finance management tool. It helps 
 
 ## Installation
 
-1. Clone the repository:
+1. **Clone the repository**:
+   '''bash
+   git clone https://github.com/Kngk0/financeproject.git
+   cd financeproject
