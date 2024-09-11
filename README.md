@@ -41,4 +41,32 @@ This financial tool is an all-in-one personal finance management tool. It helps 
 
 ## Usage
 
+## Transaction Tracker
 
+The **Transaction Tracker** helps you record your financial transactions.
+
+1. Choose "Transaction Tracker" from the main menu.
+2. Add a transaction by specifying the amount, date, category, and type (income/expense).
+3. View the transaction history or filter by date/category.
+
+## Budget Manager
+
+The **Budget Manager** allows you to set and manage a personal budget.
+
+1. Select "Budget Manager" from the main menu.
+2. Set your desired budget for a specified period (e.g., monthly)
+3. Add expenses and income; the Budget Manager will track your progress.
+4. The app will notify you if you're nearing or exceeding your set budget.
+
+## Calculator
+
+The **Calculator** allows you to perform basic arithmetic operations.
+
+1. Start the calculator from the main menu.
+2. Enter the arithmetic expression you would like to calculate.
+3. The result will be displayed instantly.
+
+## Project Structure
+finance Project/
+|
+   |-----
