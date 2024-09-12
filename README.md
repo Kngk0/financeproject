@@ -24,7 +24,7 @@ This financial tool is an all-in-one personal finance management tool. It helps 
       - [Calculator](#calculator)
    - [Project Structure](#project-structure)
    - [Contributing](#contributing)
-   - [License](#licesnse)
+   - [License](#license)
 </details>
 
 ## Installation
