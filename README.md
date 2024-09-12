@@ -67,6 +67,41 @@ The **Calculator** allows you to perform basic arithmetic operations.
 3. The result will be displayed instantly.
 
 ## Project Structure
-finance Project/
-|
-   |-----
+
+Here's an overview of the project structure:
+
+- **finance tool/**
+   - **finance.py**: The entry point for the application
+   - **transactionTracking/**
+      - `transactionTracking.py`: Manages transactions and stores data.
+      - `__init__.py`: Initializes the transaction tracker module.
+   - **budgetManagement/**
+      - `budgetManagement.py`: Handles budget-related tasks.
+      - `__init__.py`: Initializes the budget manager module.
+  - **calculator/**
+     - `calculator.py`: Handles arithmetic operations.
+     - `__init__.py`: Initializes the calculator module
+   - **docs/**
+      - `README.md`: Documentation for the project.
+
+## Contributing
+
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (git checkout -b feature-branch).
+3. Make your changes.
+4. Commit your changes (git commit -m 'Add some feature').
+5. Push to the branch (git push origin feature-branch)
+6. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License
+
+## Future Improvements
+
+- Add data persistence to save transaction and budget data between sessions.
+- Implement advanced budgeting features like recurring transactions.
+- Develop a graphical user interface (GUI) for ease of use.
+- Expand the calculator with scientific functions.
