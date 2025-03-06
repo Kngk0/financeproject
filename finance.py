@@ -3,12 +3,38 @@ import transactionTracking
 import budgetManagement
 import datetime
 import calculator
+import json
+import os
+
+# File paths for saving data
+transactionsFile = 'transactions.json'
+budgets = 'budgets.json'
+
+# Load transactions from file
+def loadTransactions():
+	if os.path.exists(transactionsFile): # Check if file exists
+		with open(transactionsFile, 'r') as file: # If does, open file in read mode
+			return json.load(file) # load transactions from file
+	return {'expenses': [], 'incomes': []}
+
+# Save transactions to file
+def saveTransactions(transactionsData):
+	with open(transactionsFile, 'w') as file: # Open file in write
+		json.dump(transactionsData, file, indent=4) # Write transactions
+
+
 # 1. The application should feature a command-line interface that is intuitive and easy to navigate.
 # 2. Users should be able to interact with the application through text-based commands and receive informative prompts and messages
 def mainMenu():
 	track = transactionTracking.transactionTracker()
 	manage = budgetManagement.management()
 	calculate = calculator.calculator()
+
+	# Load existing data
+	transactionsData = loadTransactions()
+	track.expenses = transactionsData.get('expenses', [])
+	track.incomes = transactionsData.get('incomes', [])
+
 	while True:
 		print('==============================')
 		print('Main Menu')
@@ -19,6 +45,7 @@ def mainMenu():
 		print('4. Exit\n')
 		choice = input('Enter your choice (1-4): ')
 		print()
+
 		if choice.strip():
 			if choice == '1':
 				while True:
@@ -32,6 +59,7 @@ def mainMenu():
 					print('5. Back\n')
 					choice = input('Enter your choice (1-5): ')
 					print()
+
 					if choice == '1':
 						print('Please enter details of a new expense.')
 						while True:
@@ -41,16 +69,16 @@ def mainMenu():
 								continue
 							try:
 								date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
-								if date <= datetime.datetime.today().date():
-									break
-								else:
-									print('The date cannot be in the future. Please enter a valid date.')
+								break
 							except ValueError:
 								print('Invalid date format. Please enter the date in the format YYYY-MM-DD.')
+								continue	
+
 						if date > datetime.datetime.today().date():
 							payment_status = 'pending'
 						else:
 							payment_status = 'paid'
+
 						while True:
 							amount = input('Enter the amount spent: $').strip()
 							if not amount:
@@ -64,17 +92,20 @@ def mainMenu():
 									break
 							except ValueError:
 								print('Invalid amount. Please enter a valid number.')
+
 						while True:
 							category = input('Enter the category for this expense: ').strip()
 							if not category:
 								print('Please enter the category for this expense.')
 							else:
 								break
+
 						description = input('Optionally, add a brief description for this expense:\n').strip()
 						if description:
 							pass
 						else:
 							print('No description provided for this expense.')
+
 						method = ['cash', 'credit card', 'debit card', 'bank transfer', 'check']
 						while True:
 							payment = input('Specify the payment method (Cash, Credit Card, Debit Card, Bank Transfer, Check): ').strip().lower()
@@ -82,14 +113,17 @@ def mainMenu():
 								break
 							else:
 								print('Please enter a valid payment method from the options provided.')
+
 						while True:
 							to = input('Enter the recipient: ').strip()
 							if not to:
 								print('Please enter the recipient of this expense.')
 							else:
 								break
-						print('\nExpense added successfully:')
+
 						track.addExpense(date, amount, category, payment, to, payment_status, description)
+						saveTransactions({'expenses': track.expenses, 'incomes': track.incomes})
+						print('\nExpense added successfully:')
 						print()
 					elif choice == '2':
 						print('Please enter details of a new income.')
@@ -146,12 +180,14 @@ def mainMenu():
 								break
 						print('\nIncome added successfully:')
 						track.addIncome(date, amount, category, type, source, status, description)
+						saveTransactions({'expenses':track.expenses, 'incomes':track.incomes})
 						print()
 					elif choice == '3':
 						track.view()
 						# Check if both expenses and incomes are empty
 						if not track.expenses and not track.incomes:
 							print('No transactions to show.\n')
+							return
 					elif choice == '4':
 						while True:
 							search = input('Search (or type "exit" to quit): ')
@@ -271,5 +307,5 @@ def mainMenu():
 		else:
 			print('Invalid choice. Please select a number from the menu')
 
-
-mainMenu()
+if __name__ == '__main__':
+	mainMenu()
