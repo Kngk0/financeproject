@@ -1,17 +1,17 @@
 {
     "expenses": [
         {
-            "Date": "2025-03-04",
+            "Date": "2025-03-05",
             "Amount": 3.0,
             "Category": "groceries",
             "Description": "",
-            "Payment Method": "cash",
+            "Payment Method": "debit card",
             "To": "food 4 less",
             "Payment Status": "paid"
         },
         {
             "Date": "2025-03-04",
-            "Amount": 3.0,
+            "Amount": 5.0,
             "Category": "snacks",
             "Description": "",
             "Payment Method": "cash",
@@ -19,12 +19,12 @@
             "Payment Status": "paid"
         },
         {
-            "Date": "2025-03-05",
-            "Amount": 5.0,
-            "Category": "snacks",
+            "Date": "2025-03-04",
+            "Amount": 10.0,
+            "Category": "food",
             "Description": "",
-            "Payment Method": "cash",
-            "To": "liquor store",
+            "Payment Method": "debit card",
+            "To": "in-and-out",
             "Payment Status": "paid"
         }
     ],

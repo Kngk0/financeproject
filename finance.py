@@ -21,9 +21,9 @@ def loadTransactions():
 
 # Save transactions to file
 def saveTransactions(transactionsData):
-	existingData = loadTransactions() # Load existing data
-	existingData['expenses'].extend(transactionsData['expenses']) # Add new expenses
-	existingData['incomes'].extend(transactionsData['incomes']) # Add new incomes
+	#existingData = loadTransactions() # Load existing data
+	#existingData['expenses'].extend(transactionsData['expenses']) # Add new expenses
+	#existingData['incomes'].extend(transactionsData['incomes']) # Add new incomes
 
 	with open(transactionsFile, 'w') as file: # Open file in write
 		json.dump(transactionsData, file, indent=4) # Write transactions
@@ -37,9 +37,9 @@ def mainMenu():
 	calculate = calculator.calculator()
 
 	# Load existing data
-	transactionsData = loadTransactions()
-	track.expenses = transactionsData.get('expenses', [])
-	track.incomes = transactionsData.get('incomes', [])
+	transactionsData = loadTransactions() # Load transactions from file
+	track.expenses = transactionsData.get('expenses', []) # retrieves the value associated with a key from the dictionary and assigns it to track.expenses
+	track.incomes = transactionsData.get('incomes', []) # Assign 'incomes' values (list) to track.incomes
 
 	while True:
 		print('==============================')
