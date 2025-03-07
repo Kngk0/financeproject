@@ -1,4 +1,32 @@
 {
     "expenses": [
         {
-            "Date": 
+            "Date": "2025-03-04",
+            "Amount": 3.0,
+            "Category": "groceries",
+            "Description": "",
+            "Payment Method": "cash",
+            "To": "food 4 less",
+            "Payment Status": "paid"
+        },
+        {
+            "Date": "2025-03-04",
+            "Amount": 3.0,
+            "Category": "snacks",
+            "Description": "",
+            "Payment Method": "cash",
+            "To": "7/11",
+            "Payment Status": "paid"
+        },
+        {
+            "Date": "2025-03-05",
+            "Amount": 5.0,
+            "Category": "snacks",
+            "Description": "",
+            "Payment Method": "cash",
+            "To": "liquor store",
+            "Payment Status": "paid"
+        }
+    ],
+    "incomes": []
+}

@@ -1,5 +1,4 @@
-import json
-import os
+import datetime
 
 class transactionTracker: 
 
@@ -9,6 +8,9 @@ class transactionTracker:
 
 	# Method to add expenses
 	def addExpense(self, date, amount, category, payment, to, status,  description = ''):
+		if isinstance(date, datetime.date): # Ensure it's a date object before formatting
+			date = date.strftime('%Y-%m-%d') # Convert to 'YYYY-MM-DD' format
+			
 		expense = {
  			"Date": date,
  			"Amount": amount,
@@ -28,7 +30,10 @@ class transactionTracker:
 				 
 	# Method to add income
 	def addIncome(self, date, amount, category, incomeType, source, status, description = ''):
- 		# DEFINE income AS DICTIONARY OF DATE, AMOUNT, CATEGORY, DESCRIPTION, INCOME TYPE, SOURCE, STATUS
+		# DEFINE income AS DICTIONARY OF DATE, AMOUNT, CATEGORY, DESCRIPTION, INCOME TYPE, SOURCE, STATUS
+		if isinstance(date, datetime.date): # Ensure it's a date object before formatting
+			date = date.strftime('%Y-%m-%d') # Convert to 'YYYY-MM-DD' format
+
 		income = {
  			"Date": date,
  			"Amount": amount,

@@ -14,11 +14,17 @@ budgets = 'budgets.json'
 def loadTransactions():
 	if os.path.exists(transactionsFile): # Check if file exists
 		with open(transactionsFile, 'r') as file: # If does, open file in read mode
-			return json.load(file) # load transactions from file
+			data = json.load(file) # Convert file data to Python dictionary
+			return data
+		
 	return {'expenses': [], 'incomes': []}
 
 # Save transactions to file
 def saveTransactions(transactionsData):
+	existingData = loadTransactions() # Load existing data
+	existingData['expenses'].extend(transactionsData['expenses']) # Add new expenses
+	existingData['incomes'].extend(transactionsData['incomes']) # Add new incomes
+
 	with open(transactionsFile, 'w') as file: # Open file in write
 		json.dump(transactionsData, file, indent=4) # Write transactions
 
