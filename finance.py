@@ -8,7 +8,7 @@ import os
 
 # File paths for saving data
 transactionsFile = 'transactions.json'
-budgets = 'budgets.json'
+budgetsFile = 'budgets.json'
 
 # Load transactions from file
 def loadTransactions():
@@ -24,7 +24,20 @@ def saveTransactions(transactionsData):
 	with open(transactionsFile, 'w') as file: # Open file in write
 		json.dump(transactionsData, file, indent=4) # Write transactions
 
+# Load budgets from file
+def loadBudgets():
+	if os.path.exists(budgetsFile): # Check if file exists
+		with open(budgetsFile, 'r') as file: # If does, open file in read mode
+			data = json.load(file) # Convert file data to Python dictionary
+			return data
+	return {'categories': []}
 
+# Save budgets to file
+def saveBudgets(budgetsData):
+	with open(budgetsFile, 'w') as file: # Open file in write
+		json.dump(budgetsData, file, indent=4) # Write budgets
+
+# Main menu
 # 1. The application should feature a command-line interface that is intuitive and easy to navigate.
 # 2. Users should be able to interact with the application through text-based commands and receive informative prompts and messages
 def mainMenu():
@@ -32,10 +45,14 @@ def mainMenu():
 	manage = budgetManagement.management()
 	calculate = calculator.calculator()
 
-	# Load existing data
+	# Load existing transactions data
 	transactionsData = loadTransactions() # Load transactions from file
 	track.expenses = transactionsData.get('expenses', []) # retrieves the value associated with a key from the dictionary and assigns it to track.expenses
 	track.incomes = transactionsData.get('incomes', []) # Assign 'incomes' values (list) to track.incomes
+
+	# Load existing budgets data
+	budgetsData = loadBudgets() # Load budgets from file
+	manage.budgetList = budgetsData.get('categories', []) # Assign 'categories' values (list) to manage.budgetList
 
 	while True:
 		print('==============================')
@@ -180,9 +197,9 @@ def mainMenu():
 								print('Please enter the source of this income.')
 							else:
 								break
-						print('\nIncome added successfully:')
 						track.addIncome(date, amount, category, type, source, status, description)
 						saveTransactions({'expenses':track.expenses, 'incomes':track.incomes})
+						print('\nIncome added successfully:')
 						print()
 					elif choice == '3':
 						track.view()
@@ -237,6 +254,7 @@ def mainMenu():
 							print('No description provided for this Budget.')
 						print('\nBudget set successfully:')
 						manage.setBudget(category, budgetAmount, description)
+						saveBudgets({'categories': manage.budgetList})
 						print()
 					elif choice == '2':
 						manage.viewSummary(track)
