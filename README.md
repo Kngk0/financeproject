@@ -7,6 +7,7 @@ This financial tool is an all-in-one personal finance management tool. It helps 
    - Logs financial transactions (e.g. income, expenses).
    - Provides a history of past transactions for easy review.
    - Categorizes transactions to help users track spending.
+   - Stores transactions in a JSON file (transactions.json).
 2. Budget Manager:
    - Allows users to set monthly/weekly budgets.
    - Tracks spending against the set budgets.
