@@ -21,10 +21,6 @@ def loadTransactions():
 
 # Save transactions to file
 def saveTransactions(transactionsData):
-	#existingData = loadTransactions() # Load existing data
-	#existingData['expenses'].extend(transactionsData['expenses']) # Add new expenses
-	#existingData['incomes'].extend(transactionsData['incomes']) # Add new incomes
-
 	with open(transactionsFile, 'w') as file: # Open file in write
 		json.dump(transactionsData, file, indent=4) # Write transactions
 
