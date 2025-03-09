@@ -12,6 +12,7 @@ This financial tool is an all-in-one personal finance management tool. It helps 
    - Allows users to set monthly/weekly budgets.
    - Tracks spending against the set budgets.
    - Alerts users when they are close to or exceeding their budget limits.
+   - Stores budgets in a JSON file (budgets.json).
   
 # Table of Contents
 
